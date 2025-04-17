@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using MyMvcApp.Data;
-
+using DotNetEnv;
 var builder = WebApplication.CreateBuilder(args);
 
+DotNetEnv.Env.Load();
+string connectionString = Environment.GetEnvironmentVariable("DB_URL") ?? throw new Exception("DB_URL is not set");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
-);
+{
+    options.UseNpgsql(connectionString);
+});
 
 var app = builder.Build();
 

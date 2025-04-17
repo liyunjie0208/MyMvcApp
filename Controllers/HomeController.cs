@@ -12,12 +12,19 @@ namespace MyMvcApp.Controllers
         {
             _context = context;
         }
-        
+
+        public IActionResult Index()
+        {
+            var products = await_context.Products.ToListAsync()
+            return View(products);
+        }
+
         public async Task<IActionResult> Index()
         {
             var products = await _context.Products.ToListAsync();
             return View(products);
         }
+
         public IActionResult Privacy()
         {
             return View();

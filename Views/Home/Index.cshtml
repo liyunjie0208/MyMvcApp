@@ -1,37 +1,39 @@
 ﻿@model IEnumerable<MyMvcApp.Models.Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>產品清單</title>
-</head>
-<body>
-    <header>
-        <h1>產品清單</h1>
-        <!-- Banner 區塊，連結至新增產品頁面 -->
-        <div style="background-color: #f2f2f2; padding: 20px; text-align: center;">
-            <a href="/Product/Create" style="font-size: 20px; text-decoration: none; color: #007ACC;">新增產品</a>
-        </div>
-    </header>
-    <section>
-        <table border="1" cellspacing="0" cellpadding="5">
-            <tr>
-                <th>ID</th>
-                <th>產品名稱</th>
-                <th>描述</th>
-                <th>價格</th>
-            </tr>
-            @foreach (var product in Model)
-            {
-                <tr>
-                    <td>@product.Id</td>
-                    <td>@product.Name</td>
-                    <td>@product.Description</td>
-                    <td>@product.Price</td>
-                </tr>
-            }
-        </table>
-    </section>
-</body>
-</html>
+<div class="text-center">
+    <h1 class="display-4">Welcome to MyApp 12131715</h1>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
